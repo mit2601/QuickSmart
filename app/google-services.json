@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "316558618718",
+    "project_id": "quicksmart-da79e",
+    "storage_bucket": "quicksmart-da79e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316558618718:android:46efe18990dcd12dccc4cf",
+        "android_client_info": {
+          "package_name": "com.example.quicksmart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_8rmt8ZJKKfv60mFQQ675X_MRinNsX3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

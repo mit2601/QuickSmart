@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:src="@drawable/icon"/>
+
+
+    <TextView
+        style="@style/logintitle"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:textStyle="bold"
+        android:fontFamily="cursive"
+        android:textSize="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Login"
+
+       />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@drawable/rounded_box"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp">
+
+        <TextView
+
+            style="@style/textview1"
+            android:text="Email Address"/>
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:hint="Enter Your UserName/Email"
+            android:textColor="@color/textPrimary"
+            android:textColorHint="@color/textSecondary" />
+
+        <TextView
+           style="@style/textview1"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Password"/>
+
+
+        <EditText
+            android:id="@+id/pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/textPrimary"
+            android:textColorHint="@color/textSecondary" />
+        <TextView
+            android:id="@+id/fgtpass"
+            style="@style/textview2"
+            android:text="Forgot Password?"/>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Btn"
+            android:id="@+id/main_login"
+            android:layout_width="match_parent"
+            android:text="Login"
+            />
+        <com.google.android.material.button.MaterialButton
+            style="@style/Btn"
+            android:id="@+id/main_signup"
+            android:layout_width="match_parent"
+            android:text="Signup" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

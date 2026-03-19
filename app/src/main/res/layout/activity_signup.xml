@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/icon"/>
+
+
+    <TextView
+        style="@style/logintitle"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:textStyle="bold"
+        android:fontFamily="cursive"
+        android:textSize="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="SignUp"
+
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@drawable/rounded_box"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp">
+
+        <TextView
+
+            style="@style/textview1"
+            android:text="Name"/>
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:hint="Enter Your Name"
+            android:textColor="@color/textPrimary"
+            android:textColorHint="@color/textSecondary" />
+        <TextView
+
+            style="@style/textview1"
+            android:text="E-Mail Address"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:hint="Enter Your Email Address"
+            android:textColor="@color/textPrimary"
+            android:textColorHint="@color/textSecondary" />
+        <TextView
+
+            style="@style/textview1"
+            android:text="Phone Number"/>
+
+        <EditText
+            android:id="@+id/phn_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:hint="Enter Your Phone Number"
+            android:textColor="@color/textPrimary"
+            android:textColorHint="@color/textSecondary" />
+
+        <TextView
+            style="@style/textview1"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Password"/>
+
+
+        <EditText
+            android:id="@+id/pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/textPrimary"
+            android:textColorHint="@color/textSecondary" />
+
+
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Btn"
+            android:id="@+id/reg_signup"
+            android:layout_width="match_parent"
+            android:text="Send OTP" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

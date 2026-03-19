@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="search_card_bg">#1E1E1E</color>   <!-- dark -->
+    <color name="search_card_stroke">#444444</color>
+    <color name="input_text">#FFFFFF</color>
+    <color name="input_hint">#B0B0B0</color>
+</resources>
