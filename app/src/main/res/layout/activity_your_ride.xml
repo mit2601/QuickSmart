@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="QuickSmart"
+                    android:text="Your Rides"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -56,7 +56,58 @@
 
             </LinearLayout>
 
+            <!-- 🔥 NEW UI STARTS HERE -->
 
+            <!-- Tabs -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="horizontal"
+                android:background="@color/search_card_bg"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/tabBooked"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Booked Rides"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:background="@drawable/bg_tab_selected"/>
+
+                <TextView
+                    android:id="@+id/tabOffered"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Offered Rides"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/input_hint"
+                    android:background="@drawable/bg_tab_selected"/>
+            </LinearLayout>
+
+            <!-- Section Label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UPCOMING JOURNEYS"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/input_hint"
+                android:paddingHorizontal="16dp"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMyRides"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:nestedScrollingEnabled="false"/>
 
 
         </LinearLayout>

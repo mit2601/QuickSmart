@@ -17,6 +17,12 @@
         android:theme="@style/Theme.QuickSmart"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".BookingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RideDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity

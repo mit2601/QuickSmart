@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
@@ -22,7 +22,6 @@
             android:orientation="vertical">
 
             <!-- Top App Bar -->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_60sdp"
@@ -57,7 +56,6 @@
             </LinearLayout>
 
             <!-- HERO + SEARCH OVERLAP -->
-
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_260sdp">
@@ -80,7 +78,6 @@
                 </LinearLayout>
 
                 <!-- Search Card -->
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,17 +97,21 @@
                         android:padding="@dimen/_16sdp">
 
                         <EditText
+                            android:id="@+id/etFrom"
+                            android:textColor="@color/input_text"
+                            android:textColorHint="@color/input_hint"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Leaving from"
-                            android:textColor="@color/textPrimary"/>
+                            android:hint="Leaving from" />
 
                         <EditText
+                            android:id="@+id/etTo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Going to"
                             android:layout_marginTop="@dimen/_8sdp"
-                            android:textColor="@color/textPrimary"/>
+                            android:textColor="@color/input_text"
+                            android:textColorHint="@color/input_hint"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -119,17 +120,26 @@
                             android:layout_marginTop="@dimen/_8sdp">
 
                             <EditText
+                                android:id="@+id/etDate"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:hint="Date"/>
+                                android:hint="Select Date"
+                                android:focusable="false"
+                                android:clickable="true"
+                                android:textColor="@color/input_text"
+                                android:textColorHint="@color/input_hint"/>
 
                             <EditText
+                                android:id="@+id/etPassengers"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_marginStart="@dimen/_8sdp"
                                 android:layout_height="wrap_content"
-                                android:hint="Passengers"/>
+                                android:hint="Passengers"
+                                android:inputType="number"
+                                android:textColor="@color/input_text"
+                                android:textColorHint="@color/input_hint"/>
 
                         </LinearLayout>
 
@@ -140,25 +150,32 @@
             </FrameLayout>
 
             <!-- Search Button -->
-
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSearch"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
                 android:text="Search"
                 android:textSize="18sp"
+                android:background="@drawable/button_radius_home"
                 app:backgroundTint="@color/colorAccent"
-                app:backgroundTintMode="src_in"
                 android:textColor="@color/black"
                 android:layout_margin="@dimen/_16sdp"
-                android:background="@drawable/button_radius_home"
-                android:layout_marginTop="@dimen/_50sdp"/>
+                android:layout_marginTop="@dimen/_40sdp"/>
 
+            <!-- RecyclerView for Rides -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRides"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_ride" />
         </LinearLayout>
 
     </ScrollView>
 
     <!-- Bottom Navigation -->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
