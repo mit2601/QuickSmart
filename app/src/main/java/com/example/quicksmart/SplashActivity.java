@@ -1,18 +1,12 @@
 package com.example.quicksmart;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.os.Handler;
-import android.os.Looper;
+import android.widget.ImageView;
 
-
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,40 +16,44 @@ public class SplashActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     ImageView splash;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        splash=findViewById(R.id.splashgif);
+        splash = findViewById(R.id.splashgif);
         Glide.with(SplashActivity.this).asGif().load(R.drawable.sedan).into(splash);
 
         mAuth = FirebaseAuth.getInstance();
-
+        sp = getSharedPreferences(ConstantSp.PREF, MODE_PRIVATE);
 
         new Handler().postDelayed(this::checkUserSession, 2500);
     }
 
     private void checkUserSession() {
-
         FirebaseUser user = mAuth.getCurrentUser();
 
         if (user != null) {
-            user.getIdToken(true).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
+            // Check the role saved during login
+            String role = sp.getString(ConstantSp.ROLE, constants.ROLE_USER);
 
-                    goToHome();
-                } else {
-                    mAuth.signOut();
-                    goToLogin();
-                }
-
-            });
-
+            if (constants.ROLE_ADMIN.equals(role)) {
+                goToAdmin();
+            } else {
+                goToHome();
+            }
         } else {
             goToLogin();
         }
+    }
+
+    private void goToAdmin() {
+        Intent intent = new Intent(SplashActivity.this, AdminDashboardActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void goToHome() {

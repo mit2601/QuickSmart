@@ -1,0 +1,15 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <bitmap
+            android:src="@drawable/bg_car"
+            android:gravity="fill"/>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="#66000000"/>
+        </shape>
+    </item>
+
+</layer-list>

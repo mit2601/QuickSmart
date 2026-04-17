@@ -14,7 +14,7 @@ public class NavHelper {
             // Check if we are already on the selected activity to avoid re-launching it
             if (id == R.id.nav_search && activity instanceof homeActivity) return true;
             if (id == R.id.nav_add && activity instanceof AddRideActivity) return true;
-            if (id == R.id.nav_inbox && activity instanceof InboxActivity) return true;
+
             if (id == R.id.nav_profile && activity instanceof ProfileActivity) return true;
             if (id == R.id.nav_rides && activity instanceof YourRideActivity) return true;
 
@@ -26,10 +26,7 @@ public class NavHelper {
             } else if (id == R.id.nav_add) {
                 intent = new Intent(activity, AddRideActivity.class);
                 activity.finish();
-            } else if (id == R.id.nav_inbox) {
-                intent = new Intent(activity, InboxActivity.class);
-                activity.finish();
-            } else if (id == R.id.nav_profile) {
+            }  else if (id == R.id.nav_profile) {
                 intent = new Intent(activity, ProfileActivity.class);
                 activity.finish();
             } else if (id == R.id.nav_rides) {

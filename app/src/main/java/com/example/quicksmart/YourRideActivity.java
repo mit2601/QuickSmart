@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class YourRideActivity extends AppCompatActivity {
@@ -86,7 +87,6 @@ public class YourRideActivity extends AppCompatActivity {
 
         db.collection("Rides")
                 .whereEqualTo("driverId", uid)
-                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener(snapshot -> {
                     rideList.clear();
@@ -96,6 +96,10 @@ public class YourRideActivity extends AppCompatActivity {
                             rideList.add(ride);
                         }
                     }
+                    // Sort in Java to avoid "Failed Precondition" index errors
+                    Collections.sort(rideList, (r1, r2) -> Long.compare(r2.timestamp, r1.timestamp));
+                    
+                    adapter.setViewType("offered");
                     adapter.notifyDataSetChanged();
                     if (rideList.isEmpty()) {
                         Toast.makeText(this, "No offered rides found", Toast.LENGTH_SHORT).show();
@@ -107,6 +111,40 @@ public class YourRideActivity extends AppCompatActivity {
     }
 
     private void BookedRidesShow() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
 
+        String uid = user.getUid();
+
+        db.collection("Bookings")
+                .whereEqualTo("passengerId", uid)
+                .get()
+                .addOnSuccessListener(snapshot -> {
+                    rideList.clear();
+                    for (DocumentSnapshot doc : snapshot.getDocuments()) {
+                        RideModel ride = doc.toObject(RideModel.class);
+                        if (ride != null) {
+                            // Map fields that are named differently in Bookings collection
+                            if (doc.contains("bookedSeats")) {
+                                ride.seats = doc.getLong("bookedSeats").intValue();
+                            }
+                            if (doc.contains("totalPrice")) {
+                                ride.price = doc.getLong("totalPrice").intValue();
+                            }
+                            rideList.add(ride);
+                        }
+                    }
+                    // Sort in Java to avoid "Failed Precondition" index errors
+                    Collections.sort(rideList, (r1, r2) -> Long.compare(r2.timestamp, r1.timestamp));
+                    
+                    adapter.setViewType("booked");
+                    adapter.notifyDataSetChanged();
+                    if (rideList.isEmpty()) {
+                        Toast.makeText(this, "No booked rides found", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }

@@ -7,8 +7,5 @@ public class ConstantSp {
     public static final String PHN_NO = "phn_no";
     public static final String NAME = "name";
     public static final String UID = "uid";
-
-
-
-
+    public static final String ROLE = "role";
 }

@@ -12,6 +12,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -102,6 +104,10 @@ public class homeActivity extends AppCompatActivity {
         // Determine the start time for the filter: use selected date if available, otherwise "now"
         long currentFilterDate = (dateStr.isEmpty()) ? 0 : selectedTimestamp;
 
+        // Get current user ID to exclude their own rides
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String currentUid = (currentUser != null) ? currentUser.getUid() : "";
+
         // Fetch rides by route from "Rides" collection
         db.collection("Rides")
                 .whereEqualTo("route", route)
@@ -114,12 +120,14 @@ public class homeActivity extends AppCompatActivity {
                         RideModel ride = doc.toObject(RideModel.class);
                         if (ride == null) continue;
 
-                        if (ride.seats >= requiredSeats) {
+                        // Exclude rides created by the current user
+                        if (ride.driverId != null && !ride.driverId.equals(currentUid)) {
+                            if (ride.seats >= requiredSeats) {
+                                long effectiveStart = Math.max(currentFilterDate, now - 3600000);
 
-                            long effectiveStart = Math.max(currentFilterDate, now - 3600000);
-                            
-                            if (ride.timestamp >= effectiveStart) {
-                                rideList.add(ride);
+                                if (ride.timestamp >= effectiveStart) {
+                                    rideList.add(ride);
+                                }
                             }
                         }
                     }

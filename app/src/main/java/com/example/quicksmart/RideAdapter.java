@@ -1,6 +1,7 @@
 package com.example.quicksmart;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,14 @@ import java.util.List;
 public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
 
     private List<RideModel> rideList;
+    private String viewType = "search"; // Default type
 
     public RideAdapter(List<RideModel> rideList) {
         this.rideList = rideList;
+    }
+
+    public void setViewType(String viewType) {
+        this.viewType = viewType;
     }
 
     // Method to update list from homeActivity search
@@ -42,6 +48,25 @@ public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
         holder.tvSeats.setText(String.valueOf(ride.seats) + " seats");
         holder.tvDriverName.setText(ride.driverName);
 
+        // 🔥 BIND RIDE STATUS WITH COLOR CODING
+        if ("offered".equals(viewType) || "booked".equals(viewType)) {
+            holder.txtRideStatus.setVisibility(View.VISIBLE);
+            String status = ride.status != null ? ride.status : "pending";
+            holder.txtRideStatus.setText(status.toUpperCase());
+
+            if ("approved".equalsIgnoreCase(status)) {
+                holder.txtRideStatus.setTextColor(Color.parseColor("#4CAF50")); // Green
+            } else if ("pending".equalsIgnoreCase(status)) {
+                holder.txtRideStatus.setTextColor(Color.parseColor("#FF9800")); // Orange
+            } else if ("rejected".equalsIgnoreCase(status)) {
+                holder.txtRideStatus.setTextColor(Color.parseColor("#F44336")); // Red
+            } else {
+                holder.txtRideStatus.setTextColor(Color.GRAY);
+            }
+        } else {
+            holder.txtRideStatus.setVisibility(View.GONE);
+        }
+
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), RideDetailActivity.class);
 
@@ -55,6 +80,7 @@ public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
             intent.putExtra("driverid", ride.driverId);
             intent.putExtra("route", ride.route);
             intent.putExtra("rideId", ride.rideId);
+            intent.putExtra("type", viewType); // Pass the current view type
 
             v.getContext().startActivity(intent);
         });
@@ -66,7 +92,7 @@ public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFrom, tvTo, tvDate, tvPrice, tvSeats, tvDriverName;
+        TextView tvFrom, tvTo, tvDate, tvPrice, tvSeats, tvDriverName, txtRideStatus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +102,7 @@ public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
             tvPrice = itemView.findViewById(R.id.tvPrice);
             tvSeats = itemView.findViewById(R.id.tvSeats);
             tvDriverName = itemView.findViewById(R.id.tvDriverName);
+            txtRideStatus = itemView.findViewById(R.id.txtRideStatus);
         }
     }
 }
