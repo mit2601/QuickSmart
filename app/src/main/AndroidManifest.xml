@@ -19,6 +19,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuickSmart"
         android:usesCleartextTraffic="true">
+        
+        <activity
+            android:name=".DriverDetailApprovalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ApproveDriversActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VerifyDriverActivity"
+            android:exported="false" />
         <activity
             android:name=".ApproveRidesActivity"
             android:exported="false" />

@@ -183,7 +183,24 @@
                 android:textAllCaps="false"
                 android:gravity="start|center_vertical"
                 android:paddingHorizontal="20dp"
-                app:icon="@drawable/icon"
+                app:icon="@drawable/ic_car"
+                app:iconGravity="textStart"
+                app:iconPadding="16dp"
+                app:cornerRadius="16dp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorPrimary"
+                app:elevation="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnApproveDrivers"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="16dp"
+                android:text="Approve Drivers"
+                android:textAllCaps="false"
+                android:gravity="start|center_vertical"
+                android:paddingHorizontal="20dp"
+                app:icon="@drawable/ic_person"
                 app:iconGravity="textStart"
                 app:iconPadding="16dp"
                 app:cornerRadius="16dp"
@@ -205,25 +222,6 @@
                 app:iconPadding="16dp"
                 app:cornerRadius="16dp"
                 android:textStyle="bold"
-                app:backgroundTint="@color/colorPrimary"
-                app:elevation="8dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAnalytics"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginTop="16dp"
-                android:text="Platform Analytics"
-                android:textAllCaps="false"
-                android:gravity="start|center_vertical"
-                android:paddingHorizontal="20dp"
-                app:icon="@drawable/icon"
-
-                app:iconGravity="textStart"
-                app:iconPadding="16dp"
-                app:cornerRadius="16dp"
-                android:textStyle="bold"
-                android:textColor="#475569"
                 app:backgroundTint="@color/Yellow"
                 app:rippleColor="#E2E8F0" />
 

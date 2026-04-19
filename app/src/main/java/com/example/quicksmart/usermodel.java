@@ -1,7 +1,7 @@
 package com.example.quicksmart;
 
 public class usermodel {
-    String name, email, phn_no, role, driverStatus;
+    String name, email, phn_no, role, driverStatus, profilePic, uid, idProofBase64;
     boolean blocked;
 
     public usermodel() {
@@ -13,7 +13,7 @@ public class usermodel {
         this.phn_no = phn_no;
         this.role = "user";
         this.blocked = false;
-        this.driverStatus = "unverified"; // Default: unverified, pending, verified
+        this.driverStatus = "unverified";
     }
 
     public String getName() { return name; }
@@ -33,4 +33,13 @@ public class usermodel {
 
     public String getDriverStatus() { return driverStatus; }
     public void setDriverStatus(String driverStatus) { this.driverStatus = driverStatus; }
+
+    public String getProfilePic() { return profilePic; }
+    public void setProfilePic(String profilePic) { this.profilePic = profilePic; }
+
+    public String getUid() { return uid; }
+    public void setUid(String uid) { this.uid = uid; }
+
+    public String getIdProofBase64() { return idProofBase64; }
+    public void setIdProofBase64(String idProofBase64) { this.idProofBase64 = idProofBase64; }
 }

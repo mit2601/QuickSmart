@@ -32,9 +32,12 @@ public class AdminDashboardActivity extends AppCompatActivity {
             startActivity(new Intent(this, ApproveRidesActivity.class));
         });
 
+        findViewById(R.id.btnApproveDrivers).setOnClickListener(v -> {
+             startActivity(new Intent(this, ApproveDriversActivity.class));
+        });
+
         findViewById(R.id.btnManageUsers).setOnClickListener(v -> {
-            // TODO: Start ManageUsersActivity
-            Toast.makeText(this, "Manage Users feature coming soon", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User management coming soon", Toast.LENGTH_SHORT).show();
         });
 
         findViewById(R.id.btnLogout).setOnClickListener(v -> {
@@ -51,7 +54,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        fetchStats(); // Refresh stats when returning from approval screen
+        fetchStats(); 
     }
 
     private void fetchStats() {
@@ -69,7 +72,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
                     tvTotalUsersCount.setText(String.valueOf(queryDocumentSnapshots.size()));
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error fetching user count: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Error fetching stats", Toast.LENGTH_SHORT).show();
                 });
     }
 }
