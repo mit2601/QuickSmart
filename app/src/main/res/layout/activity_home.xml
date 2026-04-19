@@ -7,175 +7,227 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <!-- 🔷 TOP APP BAR -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:paddingHorizontal="16dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QuickSmart"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginStart="10dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/bell"/>
+    </LinearLayout>
+
     <ScrollView
-        android:id="@+id/scrollContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:paddingBottom="24dp">
 
-            <!-- Top App Bar -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
-                android:padding="@dimen/_16sdp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+            <!-- HERO IMAGE -->
+            <ImageView
+                android:id="@+id/bgImage"
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_car"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-                <ImageView
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:src="@drawable/icon"/>
+            <!-- OVERLAY -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:background="#66000000"
+                app:layout_constraintTop_toTopOf="@id/bgImage"
+                app:layout_constraintStart_toStartOf="@id/bgImage"
+                app:layout_constraintEnd_toEndOf="@id/bgImage"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="QuickSmart"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="@dimen/_10sdp"/>
+            <!-- TITLE -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find Your Ride"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toTopOf="@id/bgImage"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:src="@drawable/bell"/>
-
-            </LinearLayout>
-
-            <!-- HERO + SEARCH OVERLAP -->
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_260sdp">
+            <!-- SEARCH CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mainCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:translationY="-50dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="12dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#E0E0E0"
+                android:backgroundTint="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/bgImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="18dp"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_230sdp"
-                    android:background="@drawable/bg_car"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Your pick of rides at low prices"
-                        android:textColor="@color/white"
-                        android:textSize="26sp"
-                        android:textStyle="bold"
-                        android:layout_marginHorizontal="@dimen/_20sdp"/>
+                    <EditText
+                        android:id="@+id/etFrom"
+                        android:hint="Leaving from"
+                        android:background="@drawable/edittext_premium"
+                        android:padding="14dp"
+                        android:textColor="@color/input_text"
+                        android:textColorHint="@color/input_hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                </LinearLayout>
+                    <EditText
+                        android:id="@+id/etTo"
+                        android:hint="Going to"
+                        android:background="@drawable/edittext_premium"
+                        android:padding="14dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/input_text"
+                        android:textColorHint="@color/input_hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                <!-- Search Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_16sdp"
-                    android:layout_gravity="bottom"
-                    android:translationY="@dimen/_30sdp"
-                    app:cardBackgroundColor="@color/search_card_bg"
-                    app:strokeColor="@color/search_card_stroke"
-                    app:cardCornerRadius="@dimen/_20sdp"
-                    app:cardElevation="@dimen/_8sdp"
-                    android:layout_marginVertical="@dimen/_10sdp">
-
-                    <LinearLayout
+                    <!-- Suggestions RecyclerView -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerSuggestions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_16sdp">
+                        android:maxHeight="200dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="6dp"
+                        android:nestedScrollingEnabled="false"
+                        android:background="@drawable/suggestion_bg"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <EditText
-                            android:id="@+id/etFrom"
+                            android:id="@+id/etDate"
+                            android:hint="Date"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:background="@drawable/edittext_premium"
+                            android:padding="14dp"
+                            android:layout_weight="1"
                             android:textColor="@color/input_text"
                             android:textColorHint="@color/input_hint"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Leaving from" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
 
                         <EditText
-                            android:id="@+id/etTo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Going to"
-                            android:layout_marginTop="@dimen/_8sdp"
+                            android:id="@+id/etPassengers"
+                            android:hint="Seats"
+                            android:inputType="number"
+                            android:background="@drawable/edittext_premium"
+                            android:padding="14dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
                             android:textColor="@color/input_text"
-                            android:textColorHint="@color/input_hint"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="@dimen/_8sdp">
-
-                            <EditText
-                                android:id="@+id/etDate"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:hint="Select Date"
-                                android:focusable="false"
-                                android:clickable="true"
-                                android:textColor="@color/input_text"
-                                android:textColorHint="@color/input_hint"/>
-
-                            <EditText
-                                android:id="@+id/etPassengers"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_marginStart="@dimen/_8sdp"
-                                android:layout_height="wrap_content"
-                                android:hint="Passengers"
-                                android:inputType="number"
-                                android:textColor="@color/input_text"
-                                android:textColorHint="@color/input_hint"/>
-
-                        </LinearLayout>
-
+                            android:textColorHint="@color/input_hint"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                </com.google.android.material.card.MaterialCardView>
-
-            </FrameLayout>
-
-            <!-- Search Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSearch"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
                 android:text="Search"
-                android:textSize="18sp"
-                android:background="@drawable/button_radius_home"
-                app:backgroundTint="@color/colorAccent"
+                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_margin="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_40sdp"/>
+                app:cornerRadius="16dp"
+                app:backgroundTint="@color/colorAccent"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintTop_toBottomOf="@id/mainCard"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:translationY="-30dp"/>
 
-            <!-- RecyclerView for Rides -->
+            <!-- RESULTS SECTION -->
+            <TextView
+                android:id="@+id/tvResultsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Available Rides"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginStart="20dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/btnSearch"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:translationY="-20dp"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRides"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="10dp"
                 android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/tvResultsHeader"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:translationY="-20dp"
                 tools:listitem="@layout/item_ride" />
-        </LinearLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation -->
+    <!-- BOTTOM NAV -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
